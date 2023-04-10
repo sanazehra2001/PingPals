@@ -13,18 +13,23 @@ public class Chat {
     private Long id;        // primary key
     private LocalDate createdAt;
 
+    // Participation Table
     @ManyToMany
     @JoinTable(name = "Participation", joinColumns = @JoinColumn(name = "chatId"),
             inverseJoinColumns = @JoinColumn(name = "userId"))
     private Set<User> users = new HashSet<>();
 
+    // Message Table
     @OneToMany
     @JoinColumn(name = "chatId")
     private Set<Message> messages = new HashSet<>();
 
+    // Group Table
+    @OneToOne(mappedBy = "chat", optional = true)
+    private Group group;
+
 
     public Chat() {}
-
     public Chat(Long id, LocalDate createdAt) {
         this.id = id;
         this.createdAt = createdAt;
