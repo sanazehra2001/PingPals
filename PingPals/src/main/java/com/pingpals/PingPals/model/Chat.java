@@ -1,8 +1,8 @@
 package com.pingpals.PingPals.model;
 
 import jakarta.persistence.*;
-
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -10,39 +10,49 @@ import java.util.Set;
 public class Chat {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private LocalDateTime createdAt;
-    @ManyToMany(mappedBy = "chats")
+    private Long id;        // primary key
+    private LocalDate createdAt;
+
+    @ManyToMany
     @JoinTable(name = "Participation", joinColumns = @JoinColumn(name = "chatId"),
             inverseJoinColumns = @JoinColumn(name = "userId"))
+    private Set<User> users = new HashSet<>();
 
-    @JoinTable(name = "Message", joinColumns = @JoinColumn(name = "chatId"),
-            inverseJoinColumns = @JoinColumn(name = "userId"))
+    @OneToMany
+    @JoinColumn(name = "chatId")
+    private Set<Message> messages = new HashSet<>();
 
-    private Set<User> users;
 
     public Chat() {}
 
-    public Chat(Long id, LocalDateTime createdAt) {
+    public Chat(Long id, LocalDate createdAt) {
         this.id = id;
         this.createdAt = createdAt;
     }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
+
 
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
 
-    public LocalDateTime getCreatedAt() {
+
+    public LocalDate getCreatedAt() {
         return createdAt;
     }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(LocalDate createdAt) {
         this.createdAt = createdAt;
     }
+
 
     @Override
     public String toString() {
