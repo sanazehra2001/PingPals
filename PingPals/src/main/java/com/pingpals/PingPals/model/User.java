@@ -1,7 +1,5 @@
 package com.pingpals.PingPals.model;
-
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -9,13 +7,11 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "\"user\"")
+@Table(name = "\"users\"")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;    // primary key
-
-    // Attributes
+    private Long id;
     private String username;
     private String password;
     private String email;
@@ -24,13 +20,10 @@ public class User {
 
     // Participation Table
     @ManyToMany(mappedBy = "users")
-    @Column(name = "chatId")
     private Set<Chat> chats = new HashSet<>();
 
     // Message Table
-    @OneToMany
-    @JoinColumn (name = "senderId")
-    @Column(name = "messageId")
+    @OneToMany(mappedBy = "senderId")
     private Set<Message> messages = new HashSet<>();
 
     // Constructors

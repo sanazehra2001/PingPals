@@ -39,7 +39,12 @@ public class BootStrapData implements CommandLineRunner {
         chatRepository.save(chat);
 
         eric.getChats().add(chat);
+
+//        chat.getUsers().add(eric);
+//        chatRepository.save(chat);
+
         System.out.println(eric.toString());
+        System.out.println(chat.toString());
 
         System.out.println("Started in bootstrap");
         System.out.println("User count: " + userRepository.count());

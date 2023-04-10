@@ -8,12 +8,14 @@ import java.util.Objects;
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;        // primary key
+    private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "chatId")
     private Chat chatId;
 
     @ManyToOne
+    @JoinColumn(name = "senderId")
     private User senderId;
 
     private String content;
@@ -54,7 +56,7 @@ public class Message {
         return senderId;
     }
 
-    public void setSender(User senderId) {
+    public void setSender(User userId) {
         this.senderId = senderId;
     }
 

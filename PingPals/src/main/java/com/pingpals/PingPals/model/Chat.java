@@ -17,13 +17,10 @@ public class Chat {
     @ManyToMany
     @JoinTable(name = "Participation", joinColumns = @JoinColumn(name = "chatId"),
             inverseJoinColumns = @JoinColumn(name = "userId"))
-    @Column(name = "userId")
     private Set<User> users = new HashSet<>();
 
     // Message Table
-    @OneToMany
-    @JoinColumn(name = "chatId")
-    @Column(name = "messageId")
+    @OneToMany(mappedBy = "chatId")
     private Set<Message> messages = new HashSet<>();
 
     // Group Table
