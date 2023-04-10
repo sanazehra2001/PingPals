@@ -1,7 +1,6 @@
 package com.pingpals.PingPals.model;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -12,10 +11,10 @@ public class Message {
     private Long id;        // primary key
 
     @ManyToOne
-    private Chat chat;
+    private Chat chatId;
 
     @ManyToOne
-    private User sender;
+    private User senderId;
 
     private String content;
     private LocalDateTime sentAt;
@@ -25,10 +24,10 @@ public class Message {
     public Message() {
     }
 
-    public Message(Long id, Chat chat, User sender, String content, LocalDateTime sentAt, LocalDateTime deliveredAt, LocalDateTime seenAt) {
+    public Message(Long id, Chat chatId, User senderId, String content, LocalDateTime sentAt, LocalDateTime deliveredAt, LocalDateTime seenAt) {
         this.id = id;
-        this.chat = chat;
-        this.sender = sender;
+        this.chatId = chatId;
+        this.senderId = senderId;
         this.content = content;
         this.sentAt = sentAt;
         this.deliveredAt = deliveredAt;
@@ -44,19 +43,19 @@ public class Message {
     }
 
     public Chat getChat() {
-        return chat;
+        return chatId;
     }
 
-    public void setChat(Chat chat) {
-        this.chat = chat;
+    public void setChat(Chat chatId) {
+        this.chatId = chatId;
     }
 
     public User getSender() {
-        return sender;
+        return senderId;
     }
 
-    public void setSender(User sender) {
-        this.sender = sender;
+    public void setSender(User senderId) {
+        this.senderId = senderId;
     }
 
     public String getContent() {
@@ -95,8 +94,8 @@ public class Message {
     public String toString() {
         return "Message{" +
                 "id=" + id +
-                ", chat=" + chat +
-                ", sender=" + sender +
+                ", chat=" + chatId +
+                ", sender=" + senderId +
                 ", content='" + content + '\'' +
                 ", sentAt=" + sentAt +
                 ", deliveredAt=" + deliveredAt +

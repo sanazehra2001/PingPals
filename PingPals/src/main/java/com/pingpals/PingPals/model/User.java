@@ -9,6 +9,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
+@Table(name = "\"user\"")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,11 +24,13 @@ public class User {
 
     // Participation Table
     @ManyToMany(mappedBy = "users")
+    @Column(name = "chatId")
     private Set<Chat> chats = new HashSet<>();
 
     // Message Table
     @OneToMany
     @JoinColumn (name = "senderId")
+    @Column(name = "messageId")
     private Set<Message> messages = new HashSet<>();
 
     // Constructors

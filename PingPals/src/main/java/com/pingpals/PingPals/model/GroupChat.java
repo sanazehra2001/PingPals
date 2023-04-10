@@ -3,7 +3,7 @@ package com.pingpals.PingPals.model;
 import jakarta.persistence.*;
 
 @Entity
-public class Group {
+public class GroupChat {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -11,14 +11,13 @@ public class Group {
 
     @OneToOne(optional = true)
     @JoinColumn(name = "chatId", referencedColumnName = "id")
-    private Chat chat;
+    private Chat chatId;
 
-    public Group() {
+    public GroupChat() {
     }
-    public Group(long id, String name, Chat chat) {
+    public GroupChat(long id, String name) {
         this.id = id;
         this.name = name;
-        this.chat = chat;
     }
 
 
@@ -39,10 +38,10 @@ public class Group {
 
 
     public Chat getChat() {
-        return chat;
+        return chatId;
     }
-    public void setChat(Chat chat) {
-        this.chat = chat;
+    public void setChat(Chat chatId) {
+        this.chatId = chatId;
     }
 
     @Override
@@ -50,14 +49,14 @@ public class Group {
         return "Group{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", chat=" + chat +
+                ", chat=" + chatId +
                 '}';
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Group group)) return false;
+        if (!(o instanceof GroupChat group)) return false;
 
         return id == group.id;
     }

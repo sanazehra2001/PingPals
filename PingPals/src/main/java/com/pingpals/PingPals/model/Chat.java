@@ -17,16 +17,18 @@ public class Chat {
     @ManyToMany
     @JoinTable(name = "Participation", joinColumns = @JoinColumn(name = "chatId"),
             inverseJoinColumns = @JoinColumn(name = "userId"))
+    @Column(name = "userId")
     private Set<User> users = new HashSet<>();
 
     // Message Table
     @OneToMany
     @JoinColumn(name = "chatId")
+    @Column(name = "messageId")
     private Set<Message> messages = new HashSet<>();
 
     // Group Table
-    @OneToOne(mappedBy = "chat", optional = true)
-    private Group group;
+    @OneToOne(mappedBy = "chatId", optional = true)
+    private GroupChat groupId;
 
 
     public Chat() {}
@@ -56,6 +58,22 @@ public class Chat {
     }
     public void setCreatedAt(LocalDate createdAt) {
         this.createdAt = createdAt;
+    }
+
+
+    public Set<Message> getMessages() {
+        return messages;
+    }
+    public void setMessages(Set<Message> messages) {
+        this.messages = messages;
+    }
+
+
+    public GroupChat getGroup() {
+        return groupId;
+    }
+    public void setGroup(GroupChat groupId) {
+        this.groupId = groupId;
     }
 
 
