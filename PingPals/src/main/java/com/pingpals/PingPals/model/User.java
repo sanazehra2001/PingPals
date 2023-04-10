@@ -24,13 +24,13 @@ public class User {
 
     // Participation Table
     @ManyToMany(mappedBy = "users")
-    @Column(name = "chat")
+    @Column(name = "chatId")
     private Set<Chat> chats = new HashSet<>();
 
     // Message Table
     @OneToMany
-    @JoinColumn (name = "sender")
-    @Column(name = "message")
+    @JoinColumn (name = "senderId")
+    @Column(name = "messageId")
     private Set<Message> messages = new HashSet<>();
 
     // Constructors

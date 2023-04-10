@@ -10,8 +10,8 @@ public class GroupChat {
     private String name;
 
     @OneToOne(optional = true)
-    @JoinColumn(name = "chat", referencedColumnName = "id")
-    private Chat chat;
+    @JoinColumn(name = "chatId", referencedColumnName = "id")
+    private Chat chatId;
 
     public GroupChat() {
     }
