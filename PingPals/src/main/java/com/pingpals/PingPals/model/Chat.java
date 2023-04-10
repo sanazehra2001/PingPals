@@ -22,12 +22,12 @@ public class Chat {
 
     // Message Table
     @OneToMany
-    @JoinColumn(name = "chatId")
-    @Column(name = "messageId")
+    @JoinColumn(name = "chat")
+    @Column(name = "message")
     private Set<Message> messages = new HashSet<>();
 
     // Group Table
-    @OneToOne(mappedBy = "chatId", optional = true)
+    @OneToOne(mappedBy = "chat", optional = true)
     private GroupChat groupId;
 
 
